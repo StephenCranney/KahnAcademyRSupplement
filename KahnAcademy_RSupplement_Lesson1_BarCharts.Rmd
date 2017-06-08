@@ -12,7 +12,7 @@ R is quickly becoming the primary statistical software for most fields. Addition
 
 The notebook portion of this is available at my GitHub page, and I will be posting these videos online on YouTube. 
 
-R is an "object oriented program", which is a fancy way of saying that, whatever you are working with, whether it's a string of numbers, a spreadsheet, a formula, or a table of statistics, R treats it as an "object" that is stored over here on the right. To give you an example, like many programs you can create objects that are assigned numbers, so for example, a<-2 (or, perhaps more intuitively a=2, in R they mean the same thing), creates and object **a** with a value 2 (here objects are in bold).
+R is an "object oriented program", which is a fancy way of saying that, whatever you are working with, whether it's a string of numbers, a spreadsheet, a formula, or a table of statistics, R treats it as an "object" that is stored over here on the right. To give you an example, like many programs you can create objects that are assigned numbers, so for example, a<-2 (or, perhaps more intuitively a=2, in R they mean the same thing), creates and object **a** with a value 2 (here **objects** are in bold, commands are in *italics*).
 
 This object "a" can sit up in your workspace along with a dataset (a table of information like a spreadsheet), and whatever else you need. This is nice when you are working with multiple datasets. R is available as a very bare-bones program where you type straight code into a blank box, but most people use an additional program layered on top of R called RStudio, which provides some additional helpful tools and makes R much easier to handle. 
 
