@@ -21,6 +21,7 @@ The first Kahn Academy section we'll start with is on categorical data displays.
 https://www.khanacademy.org/math/statistics-probability/displaying-describing-data/categorical-data-displays
 
 To create a bar plot we are going to use the famous "mtcars" dataset. This is a built-in dataset, which means that it comes with R and there's no need to load it. If you want to use your own dataset, you will need to load it and it will appear in the workspace. There are dozens of videos and other online sources showing you "how to load data into R" (look it up on Google), so we won't go into that here (with one exception since it caused me a lot of consternation in my early R days--when referring to a place on your computer where you are storing your files, make back-slashes [\\] forwarded flashes [/]). 
+
 Since the mtcars dataset is built-in, it doesn't naturally appear in the workspace, so I'm going to make an mtcars object by assigning the mtcars dataset to an object labeled **mtcars_data** (objects can't have spaces, so all object names have to be one word; traditionally object names with multiple words use underscores to separate the words). 
 
 ```{r}
@@ -28,10 +29,13 @@ mtcars_data<-mtcars
 
 ```
 You can now click on the **mtcars_data** object and view it like you would a spreadsheet. 
+
 As you can see (hereafter AYCS), it has 11 characteristics of 32 types of cars. (You can also know this from the brief descriptor in the workspace.)
-Because R can hold multiple datasets at a time, when you refer to a variable you also have to refer to the dataset that the variable is from. 
-To do this you type the name of the dataset, then the $ sign, then the name of the variable. 
+
+Because R can hold multiple datasets at a time, when you refer to a variable you also have to refer to the dataset that the variable is from. To do this you type the name of the dataset, then the $ sign, then the name of the variable. 
+
 Anyway, back to Kahn Academy; the lesson above starts with how to read a bar plot. In R bar plots are easily made with the *barplot* command (who figured).
+
 In R commands use parentheses to enclose the stuff you want the command to work on. In this case, we want to use *barplot* to create a bar plot of a variable in 
 mtcars. 
 
@@ -52,7 +56,10 @@ par(mar=c(1,1,1,1))
 ```
 
 AYCS, this is not a very interesting graph. It shows 32 bars (one for each car) in sequential order showing how many gears there are. Bar plots are more often used to see how many of an item there is per value, so in this case how many cars have four gears, how many have three gears, etc. 
-To do this you have to make another dataset from the original dataset, in this case a dataset where the row is the gear number and the column is the number of cars that have that number of gears. You can easily get this using the *table* command. The *table* command is useful if you want to quickly look at how many cases fit in each category/level of a variable in your data. For example, if you have a spreadsheet showing survey respondents and their marital status, income, education, etc,. and you wanted to look specifically at marital status to see how many are married, how many are divorced, how many have never been married, etc. then you can simply use the *table* command. In this case, we can see how many cars have each number of gear.
+
+To do this you have to make another dataset from the original dataset, in this case a dataset where the row is the gear number and the column is the number of cars that have that number of gears. This table is called a "frequency table," and is discussed in more detail in the Kahn Academy unit on "dot plots and frequency tables": https://www.khanacademy.org/math/statistics-probability/displaying-describing-data#dot-plots-frequency-tables
+
+You can easily make a frequency table using the *table* command. The *table* command is useful if you want to quickly look at how many cases fit in each category/level of a variable in your data. For example, if you have a spreadsheet showing survey respondents and their marital status, income, education, etc,. and you wanted to look specifically at marital status to see how many are married, how many are divorced, how many have never been married, etc. then you can simply use the *table* command. In this case, we can see how many cars have each number of gear.
 
 ```{r}
 table(mtcars_data$gear)
