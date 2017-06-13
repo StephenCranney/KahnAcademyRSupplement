@@ -1,0 +1,32 @@
+---
+title: 'Unofficial Kahn Academy R Supplement: Dot Plots and Frequency Tables / Histograms'
+output:
+  pdf_document: default
+  html_notebook: default
+  html_document: default
+---
+
+Frequency tables were already touched on in the lesson on "categorical data displays," but to reiterate, you can create a frequency table by simply placing the variable inside the *table* command: 
+
+```{r}
+
+table(mtcars$gear)
+
+```
+
+As described in the Kahn Academy lecture, dot plots are very similar, but use dots to denote to frequency instead of the more straight-up numbers. 
+
+```{r}
+dotchart(mtcars$gear)
+```
+
+Once again, there are various ways to tweak the dot plot (see http://www.statmethods.net/graphs/dot.html).  
+
+Finally, histograms are created with the *hist* command (hopefully you are beginning to see the pattern).
+```{r}
+hist(mtcars$mpg)
+```
+
+Once again, this basic graph can be developed and refined: https://www.r-bloggers.com/how-to-make-a-histogram-with-basic-r/. 
+
+
