@@ -5,13 +5,13 @@ output:
   html_notebook: default
 ---
 
-The correlation command in R is, once again, quite simple. To look at the correlation matrix (or table of correlations) for the variables in the mtcars dataset we simply put the name of the dataset in the *cor* command. 
+The correlation command in R is, once again, quite simple. To look at the correlation matrix (or table of correlations) for the variables in the **mtcars** dataset we simply put the name of the dataset in the *cor* command. 
 
 ```{r}
 cor(mtcars)
 ```
 
-AYCS, weight and mpg has a negative correlation of -0.8676594. This is quite high (so there is a strong relationship), and it's negative (bigger cars= lower mpg). After a while you'll get a sense of how big correlations are just by looking at the scatterplots. This website is a fun, gamified way of learning how to guess correlation coefficients based on the scatterplot: 
+AYCS, weight and mpg has a negative correlation of -0.8676594. This is quite high (so there is a strong relationship), and it is negative (bigger cars= lower mpg). After a while you will get a sense of how big correlations are just by looking at the scatterplots. This website is a fun, gamified way of learning how to guess correlation coefficients based on the scatterplot: 
 http://guessthecorrelation.com
 
 Making a scatterplot in R with ggplot2 is very similar to making a line chart with ggplot2. Matter of fact, it's basically the same code minus the *geom_line* subcommand. For example, if we do want to make a scatterplot of the same weight/mpg relationship we did a line chart for before, we would type: 
@@ -24,9 +24,9 @@ ggplot(data=mtcars, aes(x=wt, y=mpg)) +
   geom_point()
 ```
 
-Because there's a *geom_point* subcommand and no *geom_line* subcommand like there was with our earlier line chart, R assumes that this is a dot-based, scatterplot. It's worth noting that the graph that is generated changes its height and width ddepending on how big or small you make the box with your cursor (at least in RStudio). If you create a pdf of this graph when the box is really short, then the pdf image will be really short.
+Because there's a *geom_point* subcommand and no *geom_line* subcommand like there was with our earlier line chart, R assumes that this is a dot-based scatterplot. It is worth noting that the graph that is generated changes its height and width depending on how big or small you make the box with your cursor (at least in RStudio). If you create a pdf of this graph when the box is really short, then the pdf image will be really short.
 
-Once again, we can add additional chart parts to our basic scatterplot. For example, we can fit a line through (more or less) the middle of the points (KA talks about the "least squares" method of fitting, that is the method used here if you make the *method=lm*) by adding a *geom_smooth(method=lm)* subcommand so that we don't have to eyeball the direction the dots are headed. 
+Once again, we can add additional chart parts to our basic scatterplot. For example, we can fit a line through (more or less) the middle of the points (KA talks about the "least squares" method of fitting, that is the method used here if you make the *method=lm*) by adding a *geom_smooth(method=lm)* subcommand so that we do not have to rely on eyeballing the direction the dots are headed. 
 
 ```{r}
 ggplot(data=mtcars, aes(x=wt, y=mpg)) +
@@ -39,15 +39,15 @@ ggplot(data=mtcars, aes(x=wt, y=mpg)) +
 
 ```
 
-Now that we can see the "least squares" line, we can come up with an algebraic equation that describes it; you can do this by hand by calculating the slope and estimating where the line crosses over the Y-axis, but once again the whole reason we are using R is so that we can avoid having to do this all by ourselves, since humans are messy and we make simple mistakes that can have significant consequences. To create the least-squares line, we use the *lm()* command. The *lm* command stands for least-squares model, and it fits the least squares line as described in KA. Once again, if we want to see the linear regression model for weight predicting miles per gallon, we simply put the dependent variable (in this case miles per gallon), then a ~ sign, then any independent (predictor) variables you need. In this case we only have one: weight. 
+Now that we can see the "least squares" line, we can come up with an algebraic equation that describes it; you can do this by hand by calculating the slope and estimating where the line crosses over the Y-axis, but once again the whole reason we are using R is so that we can avoid having to do this all by ourselves, since humans are messy and we make simple mistakes that can have significant consequences. To create the least-squares line we use the *lm()* command. The *lm* command stands for least-squares model, and it fits the least squares line as described in KA. Once again, if we want to see the linear regression model for weight predicting miles per gallon, we simply put the dependent variable (in this case miles per gallon), then a ~ sign, then any independent (predictor) variables you need. In this case we only have one: weight. 
 
 ```{r}
 lm(mpg~wt, data= mtcars)
 ```
 
-AYCS, the (intercept) number is where the line crosses the Y-axis. The -5.3 under wt is the slope of the line, which in this case is negative, hence a negative relationship. Therefore the equation that describes the line is Y= -5.344X + 37.285. If you go back up to the scatterplot above, you'll visually discern that this equation approximates the line drawn through the scatterplot, which crosses the Y-axis at about 37. (It may not look like that because the axis ticks stop at the floor of 1, but if you continue the trendline to 0 it crosses at about 37).
+AYCS, the (intercept) number is where the line crosses the Y-axis. The -5.3 under **wt** is the slope of the line, which in this case is negative, hence a negative relationship. Therefore the equation that describes the line is Y= -5.344X + 37.285. If you go back up to the scatterplot above, you will see that this equation approximates the line drawn through the scatterplot, which crosses the Y-axis at about 37. (It may not look like that because the axis ticks stop at the floor of 1, but if you continue the trendline to 0 it crosses at about 37).
 
-If we want to calculate the residuals, or how far from the regression line each point is, we have to make the linear model as an object, then we use the *resid* command on the linear model that we've stored as an object. This creates a series of numbers that represent the residuals for each observation. To compare the residuals to their actual values, we need to get the residuals and actual values in the same dataset. We can then easily plot the residuals against their values. In the code below, we create a dataset of only the mpg variable, then we create a new variable in that dataset that holds the residuals. 
+If we want to calculate the residuals, or how far from the regression line each point is, we have to make the linear model as an object, then we use the *resid* command on the linear model that we have stored as an object. This creates a series of numbers that represent the residuals for each observation. To compare the residuals to their actual values, we need to get the residuals and actual values in the same dataset. We can then easily plot the residuals against their values. In the code below, we create a dataset of only the mpg variable, then we create a new variable in that dataset that holds the residuals. 
 
 ```{r}
 #Here we assign the model itself as an object (named MTCARSModel)
@@ -68,7 +68,7 @@ ggplot(data=mtcars_mpg, aes(x=resid, y=actual)) +
   geom_smooth(method=lm)
 ```
 
-Why would we want to plot the residuals? To make a long story short, if there is a strong trend one way or the other, then it suggests that the relationship is not linear (in other words, the line should be curving to really fit the data well), and we have to try a non-linear approach. KA discusses that further down the road, but hopefully at this point you understand the concept of residuals and the role they play in least squares. 
+Why would we want to plot the residuals? To make a long story short, if there is a strong trend one way or the other, then it suggests that the relationship is not linear (in other words, the line should be curving to really fit the data well), and we have to try a non-linear approach. KA discusses non-linear modelling further down the road, but hopefully at this point you understand the concept of residuals and the role they play in least squares. 
 
 Finally, if we want to look at other characteristics of the model such as R-squared, we simply use the *summary* command on the model. 
 
@@ -76,7 +76,7 @@ Finally, if we want to look at other characteristics of the model such as R-squa
 summary(MTCARSModel)
 ```
 
-Here we get the R-squared, the F-statistic, and a number of other goodies. If you want to create a publication-quality table out of your regression, probably your best optio would be to look into the *stargazer* package. 
+Here we get the R-squared, the F-statistic, and a number of other goodies. If you want to create a publication-quality table out of your regression, probably the best option would be to look into the *stargazer* package. 
 
 
 

@@ -14,7 +14,7 @@ table(mtcars$gear)
 
 ```
 
-As described in the Kahn Academy lecture, dot plots are very similar, but use dots to denote to frequency instead of the more straight-up numbers. 
+As described in the KA lecture, dot plots are very similar, but use dots to denote frequency instead of the more straight-up numbers. 
 
 ```{r}
 dotchart(mtcars$gear)

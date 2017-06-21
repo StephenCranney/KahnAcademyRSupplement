@@ -1,0 +1,46 @@
+---
+title: "Unofficial Kahn Academy R Supplement: Range, IQR, and MAD / Box and Whisker Plots"
+output:
+  pdf_document: default
+  html_notebook: default
+---
+
+Similar to the R commands for mean and median, finding the range is a simple matter of using the *range* command (which gives you the highest and lowest value). You can also calculate the range by hand. As is probably not surprising to you at this point, *max()* finds the maximum value in a variable, so in our gas mileage example it gives us the mpg for the car with the highest mpg, or best gas mileage. Conversely *min()* gives us the minimum value. So if we wanted to calculate the range by hand, we could simply subtract one from the other.  
+
+```{r}
+max(mtcars$mpg)-min(mtcars$mpg)
+range(mtcars$mpg)
+```
+
+Similarly, the interquartile range is found using the *IQR* command. Once again, you can easily do it by hand using R as a calculator. The *quantile* command gives us the different quartiles. 
+
+```{r}
+quantile(mtcars$mpg)
+# Now we will subtract the 75th percentile from the 25th percentile. 
+22.800-15.425
+IQR(mtcars$mpg)
+```
+
+AYCS, both the *IQR* command, as well as the answer we get from the arithmetic are identical.
+
+Finally, to find the mean absolute deviation one uses the *mad* command. The *mad* command, however, requires that you specify that you want the mean absolute deviation and not the median absolute deviation by including a *, center= mean(X)* subcommand. If you do not include it, then the *mad* command will automatically calculate the median absolute deviation.
+
+```{r}
+mad(mtcars$mpg, center=mean(mtcars$mpg))
+```
+
+As noted in KA, Another way to visualize these themes is through a box-and-whisker plot (or "boxplot"). A basic boxplot can be created using the *boxplot* command, where the variable being measured is placed first in the command, followed by a ~, then the variable by which the different plots are organized. Finally, the dataset the variables are drawn from is referred to.  
+
+```{r}
+boxplot(mpg~cyl,data=mtcars)
+```
+
+As with other graphs, with a little Googling it's relatively easy to add X-axes labels, titles, etc. 
+
+Finally, the standard deviation of a variable is easy to find with the *sd* command. Because the variance is the standard deviation squared, we can find the variance by squaring the standard deviation. Alternatively, we can find the variance using the *var* command, but this will give us the same result 
+
+```{r}
+sd(mtcars$mpg)
+(sd(mtcars$mpg))^2
+var(mtcars$mpg)
+```
